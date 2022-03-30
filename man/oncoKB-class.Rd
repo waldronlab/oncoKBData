@@ -41,8 +41,9 @@ to the functionality provided by the rest of the package.
 }}
 
 \examples{
-
+\dontrun{
 oncoKB()
+}
 
 }
 \seealso{

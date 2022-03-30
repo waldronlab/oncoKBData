@@ -36,8 +36,10 @@ functions listed here give access to specific parts of the API and
 allow the user to explore the API with individual calls.
 }
 \examples{
+\dontrun{
 oncokb <- oncoKB()
 
-searchOps(api = cbio, keyword = "molecular")
+searchOps(api = oncokb, keyword = "molecular")
+}
 
 }

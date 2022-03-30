@@ -40,9 +40,11 @@ utils::globalVariables(c("clinicalAttributeId", "value", "sampleId"))
 #' @importFrom AnVIL Service
 #'
 #' @examples
+#' \dontrun{
 #' oncokb <- oncoKB()
 #'
-#' searchOps(api = cbio, keyword = "molecular")
+#' searchOps(api = oncokb, keyword = "molecular")
+#' }
 #'
 #' @export
 oncoKB <- function(

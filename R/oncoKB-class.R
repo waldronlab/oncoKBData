@@ -25,8 +25,9 @@
 #' @md
 #'
 #' @examples
-#'
+#' \dontrun{
 #' oncoKB()
+#' }
 #'
 #' @export
 .oncoKB <- setClass(
