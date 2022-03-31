@@ -1,5 +1,7 @@
 utils::globalVariables(c("clinicalAttributeId", "value", "sampleId"))
 
+.DEMO_ENDPOINT <- "/api/v1/v2/api-docs?group=Public%20APIs"
+
 .handle_token <- function(token) {
     if (file.exists(token))
         token <- readLines(token)
@@ -40,17 +42,18 @@ utils::globalVariables(c("clinicalAttributeId", "value", "sampleId"))
 #' @importFrom AnVIL Service
 #'
 #' @examples
-#' \dontrun{
 #' oncokb <- oncoKB()
-#'
-#' searchOps(api = oncokb, keyword = "molecular")
+#' \dontrun{
+#' ## Authorization: Bearer token as a file
+#' oncoKB(token = "~/onco_token.txt")
 #' }
+#' names(operations(oncokb))
 #'
 #' @export
 oncoKB <- function(
     hostname = "www.oncokb.org",
     protocol = "https",
-    api. = "/api/api-docs",
+    api. = .DEMO_ENDPOINT,
     token = character()
 ) {
     if (length(token))
@@ -65,6 +68,7 @@ oncoKB <- function(
                 ssl_verifypeer = 0L, ssl_verifyhost = 0L, http_version = 0L
             ),
             authenticate = FALSE,
+            api_url = apiUrl,
             api_reference_url = apiUrl,
             api_reference_md5sum = "e961ccb66b7fcc55bee3b211c646fcf1",
             api_reference_headers = token,

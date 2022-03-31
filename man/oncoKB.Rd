@@ -7,7 +7,7 @@
 oncoKB(
   hostname = "www.oncokb.org",
   protocol = "https",
-  api. = "/api/api-docs",
+  api. = .DEMO_ENDPOINT,
   token = character()
 )
 }
@@ -36,10 +36,11 @@ functions listed here give access to specific parts of the API and
 allow the user to explore the API with individual calls.
 }
 \examples{
-\dontrun{
 oncokb <- oncoKB()
-
-searchOps(api = oncokb, keyword = "molecular")
+\dontrun{
+## Authorization: Bearer token as a file
+oncoKB(token = "~/onco_token.txt")
 }
+names(operations(oncokb))
 
 }
