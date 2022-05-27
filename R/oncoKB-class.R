@@ -52,6 +52,6 @@ setMethod(
     function(x, ..., .deprecated = FALSE)
 {
     callNextMethod(
-        x, .headers = .api_header(x), ..., .deprecated = .deprecated
+        x, .headers = .api_header(x), auto_unbox = TRUE, ..., .deprecated = .deprecated
     )
 })
