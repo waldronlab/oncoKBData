@@ -25,8 +25,7 @@ the hostname (default: '/api/api-docs')}
 "63eba81c-2591-4e15-9d1c-fb6e8e51e35d" or a path to text file.}
 }
 \value{
-\preformatted{oncoKB: An API object of class 'oncoKB'
-}
+oncoKB: An API object of class 'oncoKB'
 }
 \description{
 This section of the documentation lists the functions that
