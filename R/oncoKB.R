@@ -1,5 +1,3 @@
-utils::globalVariables(c("clinicalAttributeId", "value", "sampleId"))
-
 .DEMO_ENDPOINT <- "/api/v1/v2/api-docs?group=Public%20APIs"
 
 .handle_token <- function(token) {

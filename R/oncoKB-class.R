@@ -29,6 +29,7 @@
 #' oncoKB()
 #' }
 #'
+#' @exportClass oncoKB
 #' @export
 .oncoKB <- setClass(
     "oncoKB",

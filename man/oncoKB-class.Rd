@@ -14,7 +14,7 @@
 given by the \link{oncoKB} function.}
 
 \item{...}{additional arguments passed to methods or, for
-`operations,Service-method`, to the internal `get_operation()`
+\verb{operations,Service-method}, to the internal \code{get_operation()}
 function.}
 
 \item{.deprecated}{optional logical(1) include deprecated operations?}
@@ -37,9 +37,9 @@ to the functionality provided by the rest of the package.
 }
 \section{Functions}{
 \itemize{
-\item \code{operations,oncoKB-method}: 
-}}
+\item \code{operations(oncoKB)}: 
 
+}}
 \examples{
 \dontrun{
 oncoKB()
