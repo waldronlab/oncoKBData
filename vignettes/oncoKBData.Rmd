@@ -1,0 +1,104 @@
+---
+title: "Accessing the OncoKB API with oncoKBData"
+authors: "Marcel Ramos Perez"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{oncoKBData User Guide}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    number_sections: no
+    toc: yes
+    toc_depth: 4
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE)
+```
+
+# Installation
+
+To get the development version of `oncoKBData` use: 
+
+```{r}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("LiNk-NY/oncoKBData")
+```
+
+# Package Load
+
+```{r,include=TRUE,results="hide",message=FALSE,warning=FALSE}
+library(oncoKBData)
+library(S4Vectors)
+```
+
+# Introduction
+
+The `oncoKBData` aims to provide access to the OncoKB API via the public
+API. Access is also possible with a licensed token.
+
+## API representation
+
+In order to use the OncoKB API, we must instantiate an API object as provided
+by the `r CRANpkg("rapiclient")` and `r Biocpkg("AnVIL")` packages.
+
+```{r}
+oncokb <- oncoKB()
+```
+
+Note that for private API access, users must change the `api.` argument
+in the `oncoKB` function.
+
+## Operations
+
+Check available tags, operations, and descriptions as a `tibble`:
+
+```{r}
+tags(oncokb)
+head(tags(oncokb)$operation)
+```
+
+## Levels of Evidence
+
+To retrieve the levels of evidence for all types (i.e., 'therapeutic',
+'diagnostic', 'prognostic', and 'FDA') run the `levelsOfEvidence` function. 
+
+```{r}
+(loe <- levelsOfEvidence(oncokb))
+```
+
+It will return a `DataFrame` with very important `metadata`:
+
+```{r}
+names(metadata(loe))
+
+metadata(loe)["oncoTreeVersion"]
+
+metadata(loe)[["apiVersion"]]
+```
+
+## Gene tables
+
+The API allows retrieval of curated genes where there is a single gene per
+observation: 
+
+```{r}
+curatedGenes(oncokb)
+```
+
+and a long list of genes associated with cancer where there can be multiple
+entries for the same `hugoSymbol` due to multiple `geneAliases`:
+
+```{r}
+cancerGeneList(oncokb)
+```
+
+# Session Information
+
+```{r}
+sessionInfo()
+```
+
