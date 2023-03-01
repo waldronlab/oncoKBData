@@ -9,6 +9,9 @@
 #'     `AnVIL` package. For more information, see the
 #'     \link[AnVIL:Service]{AnVIL} package.
 #'
+#' @slot api_header `named character()` vector passed on to the `.headers`
+#'   argument in `add_headers()`
+#'
 #' @details This class takes the static API as provided at
 #'     \url{https://www.oncoKB.org/api/api-docs} and creates an R object
 #'     with the help from underlying infrastructure (i.e.,

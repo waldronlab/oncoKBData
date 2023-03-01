@@ -6,8 +6,11 @@ Authors@R: person("Marcel", "Ramos", "", "marcel.ramos@sph.cuny.edu",
 Description: It provides access to the oncoKB API using the rapiclient
   R package.
 Depends: R (>= 4.2.0), AnVIL
-Imports: methods,
-  httr
+Imports:
+  dplyr,
+  methods,
+  httr,
+  S4Vectors
 License: Artistic-2.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

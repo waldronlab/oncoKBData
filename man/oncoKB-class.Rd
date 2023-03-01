@@ -40,6 +40,13 @@ to the functionality provided by the rest of the package.
 \item \code{operations(oncoKB)}: 
 
 }}
+\section{Slots}{
+
+\describe{
+\item{\code{api_header}}{\verb{named character()} vector passed on to the \code{.headers}
+argument in \code{add_headers()}}
+}}
+
 \examples{
 \dontrun{
 oncoKB()

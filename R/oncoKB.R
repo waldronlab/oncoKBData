@@ -74,3 +74,73 @@ oncoKB <- function(
         api_header = token
     )
 }
+
+#' Get the Levels of Evidence Tables from OncoKB
+#'
+#' The levels of evidence table is an `S4Vectors` `DataFrame` that includes
+#' metadata consisting of app, api, data, and oncoTree version tags which were
+#' used to generate the table.
+#'
+#' @param api An OncoKB API instance as returned by `oncoKB()`
+#'
+#' @return A `DataFrame` with metadata
+#'
+#' @export
+levelsOfEvidence <- function(api) {
+    result <- httr::content(
+        .invoke_fun(api, "infoGetUsingGET_1")
+    )
+    metadata <- result[!names(result) %in% "levels"]
+
+    evid <- dplyr::bind_rows(result[["levels"]]) |>
+        methods::as("DataFrame")
+
+    S4Vectors::metadata(evid) <- metadata
+    evid
+}
+
+#' Get a table of curated oncogenes
+#'
+#' @param includeEvidence `logical(1)` Whether to include additional data in the
+#'   `summary` and `background` columns (default: `TRUE`)
+#'
+#' @inheritParams levelsOfEvidence
+#'
+#' @return A tibble of curated oncogenes
+#'
+#' @examples
+#'
+#' oncokb <- oncoKB()
+#' curatedGenes(oncokb)
+#'
+#' @export
+curatedGenes <- function(api, includeEvidence = TRUE) {
+    .bind_content(
+        .invoke_fun(
+            api,
+            "utilsAllCuratedGenesGetUsingGET_1",
+            includeEvidence = includeEvidence
+        )
+    )
+}
+
+#' Obtain the OncoKB cancer gene list
+#'
+#' @inheritParams levelsOfEvidence
+#'
+#' @return A long tibble of genes with additional columns
+#'
+#' @examples
+#'
+#' oncokb <- oncoKB()
+#' cancerGeneList(oncokb)
+#'
+#' @export
+cancerGeneList <- function(api) {
+    .bind_content(
+        .invoke_fun(
+            api,
+            "utilsCancerGeneListGetUsingGET_1"
+        )
+    )
+}
