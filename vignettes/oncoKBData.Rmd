@@ -61,6 +61,8 @@ tags(oncokb)
 head(tags(oncokb)$operation)
 ```
 
+__Note__. The annotations API access requires a token. 
+
 ## Levels of Evidence
 
 To retrieve the levels of evidence for all types (i.e., 'therapeutic',
