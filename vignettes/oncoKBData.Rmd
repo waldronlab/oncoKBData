@@ -17,6 +17,12 @@ output:
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
+# oncoKBData
+
+The aim of the package is to expose the OncoKB API through an R client.
+This vignette demonstrates public API access. To learn more about the OncoKB
+database, visit https://www.oncokb.org.
+
 # Installation
 
 To get the development version of `oncoKBData` use: 

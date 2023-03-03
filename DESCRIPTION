@@ -4,7 +4,8 @@ Version: 0.99.1
 Authors@R: person("Marcel", "Ramos", "", "marcel.ramos@sph.cuny.edu",
     c("aut", "cre"), c(ORCID = "0000-0002-3242-0582"))
 Description: It provides access to the oncoKB API using the rapiclient
-  R package.
+  R package. It allows access to both public and private APIs. Private API
+  access requires a token obtained from https://www.oncokb.org.
 Depends: R (>= 4.2.0), AnVIL
 Imports:
   dplyr,
