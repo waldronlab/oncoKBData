@@ -16,6 +16,7 @@ Suggests:
   BiocStyle,
   knitr,
   rmarkdown
+VignetteBuilder: knitr
 License: Artistic-2.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
