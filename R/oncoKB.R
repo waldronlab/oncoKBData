@@ -39,10 +39,11 @@
 #'
 #' @examples
 #' oncokb <- oncoKB()
-#' \dontrun{
+#'
 #' ## Authorization: Bearer token as a file
-#' oncoKB(token = "~/onco_token.txt")
-#' }
+#' if (interactive())
+#'   oncoKB(token = "~/onco_token.txt")
+#'
 #' names(operations(oncokb))
 #'
 #' @export
@@ -84,6 +85,10 @@ oncoKB <- function(
 #' @param api An OncoKB API instance as returned by `oncoKB()`
 #'
 #' @return A `DataFrame` with metadata
+#'
+#' @examples
+#' oncokb <- oncoKB()
+#' levelsOfEvidence(oncokb)
 #'
 #' @export
 levelsOfEvidence <- function(api) {

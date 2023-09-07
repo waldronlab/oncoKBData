@@ -19,6 +19,9 @@ function.}
 
 \item{.deprecated}{optional logical(1) include deprecated operations?}
 }
+\value{
+An \code{oncoKB} class instance.
+}
 \description{
 The \code{oncoKB} class is a representation of the \code{oncoKB}
 API protocol that directly inherits from the \code{Service} class in the
@@ -48,9 +51,7 @@ argument in \code{add_headers()}}
 }}
 
 \examples{
-\dontrun{
 oncoKB()
-}
 
 }
 \seealso{

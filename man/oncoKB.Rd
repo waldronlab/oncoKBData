@@ -36,10 +36,11 @@ allow the user to explore the API with individual calls.
 }
 \examples{
 oncokb <- oncoKB()
-\dontrun{
+
 ## Authorization: Bearer token as a file
-oncoKB(token = "~/onco_token.txt")
-}
+if (interactive())
+  oncoKB(token = "~/onco_token.txt")
+
 names(operations(oncokb))
 
 }

@@ -1,13 +1,13 @@
 Package: oncoKBData
 Title: A package to access the oncoKB web API
 Version: 0.99.1
-Authors@R: person("Marcel", "Ramos", "", "marcel.ramos@sph.cuny.edu",
+Authors@R: person("Marcel", "Ramos", "", "marcel.ramos@roswellpark.org",
     c("aut", "cre"), c(ORCID = "0000-0002-3242-0582"))
 Description: It provides access to the oncoKB API using the rapiclient and
   AnVIL R / Bioconductor packages. It allows access to both public and private
   APIs. Private API access requires a token obtained from
   https://www.oncokb.org.
-Depends: R (>= 4.2.0), AnVIL
+Depends: R (>= 4.3.0), AnVIL
 Imports:
   dplyr,
   methods,
@@ -17,8 +17,11 @@ Suggests:
   BiocStyle,
   knitr,
   rmarkdown
+biocViews: Infrastructure, ThirdPartyClient
+URL: https://github.com/waldronlab/oncoKBData
+BugReports: https://github.com/waldronlab/oncoKBData/issues
 VignetteBuilder: knitr
 License: Artistic-2.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.2.3.9000

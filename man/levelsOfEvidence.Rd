@@ -17,3 +17,8 @@ The levels of evidence table is an \code{S4Vectors} \code{DataFrame} that includ
 metadata consisting of app, api, data, and oncoTree version tags which were
 used to generate the table.
 }
+\examples{
+oncokb <- oncoKB()
+levelsOfEvidence(oncokb)
+
+}

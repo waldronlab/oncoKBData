@@ -25,12 +25,12 @@
 #'
 #' @seealso  \link{oncoKB}, \linkS4class{Service}
 #'
+#' @return An `oncoKB` class instance.
+#'
 #' @md
 #'
 #' @examples
-#' \dontrun{
 #' oncoKB()
-#' }
 #'
 #' @exportClass oncoKB
 #' @export
