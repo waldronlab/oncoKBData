@@ -70,7 +70,8 @@ oncoKB <- function(
             api_reference_md5sum = "c4bb5d9a8e130c154a22a5be604da4f3",
             api_reference_headers = token,
             package = "oncoKB",
-            schemes = protocol
+            schemes = protocol,
+            ext = "json"
         ),
         api_header = token
     )
