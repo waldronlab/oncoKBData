@@ -67,7 +67,7 @@ oncoKB <- function(
             authenticate = FALSE,
             api_url = apiUrl,
             api_reference_url = apiUrl,
-            api_reference_md5sum = "e05bf7beb434130f78c7836f8bda87df",
+            api_reference_md5sum = "c4bb5d9a8e130c154a22a5be604da4f3",
             api_reference_headers = token,
             package = "oncoKB",
             schemes = protocol
