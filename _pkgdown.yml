@@ -1,0 +1,7 @@
+title: oncoKBData
+url: https://waldronlab.github.io/oncoKBData
+
+template:
+  bootstrap: 5
+  params:
+    bootswatch: flatly
