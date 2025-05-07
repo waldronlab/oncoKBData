@@ -7,7 +7,7 @@ Description: It provides access to the oncoKB API using the rapiclient and
   AnVIL R / Bioconductor packages. It allows access to both public and private
   APIs. Private API access requires a token obtained from
   https://www.oncokb.org.
-Depends: R (>= 4.3.0), AnVIL
+Depends: R (>= 4.3.0), AnVIL (>= 1.21.3)
 Imports:
   dplyr,
   methods,
