@@ -14,6 +14,7 @@ output:
 ---
 
 ```{r, setup, include=FALSE}
+library(BiocStyle)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
