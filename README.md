@@ -1,6 +1,12 @@
 
 # oncoKBData
 
+<!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
 The aim of the package is to expose the OncoKB API through an R client.
 This vignette demonstrates public API access. To learn more about the
 OncoKB database, visit <https://www.oncokb.org>.
@@ -33,7 +39,7 @@ API. Access is also possible with a licensed token.
 In order to use the OncoKB API, we must instantiate an API object as
 provided by the
 *[rapiclient](https://CRAN.R-project.org/package=rapiclient)* and
-*[AnVIL](https://bioconductor.org/packages/3.17/AnVIL)* packages.
+*[AnVIL](https://bioconductor.org/packages/3.22/AnVIL)* packages.
 
 ``` r
 oncokb <- oncoKB()
@@ -107,7 +113,7 @@ It will return a `DataFrame` with important `metadata`:
 
 ``` r
 names(metadata(loe))
-#> [1] "oncoTreeVersion" "ncitVersion"     "dataVersion"     "appVersion"      "apiVersion"      "publicInstance"
+#> [1] "oncoTreeVersion" "ncitVersion"     "dataVersion"     "appVersion"      "apiVersion"      "publicInstance"  "genomeNexus"
 
 metadata(loe)["oncoTreeVersion"]
 #> $oncoTreeVersion
@@ -115,13 +121,13 @@ metadata(loe)["oncoTreeVersion"]
 
 metadata(loe)[["apiVersion"]]
 #> $version
-#> [1] "v1.4.0"
+#> [1] "v1.5.0"
 #> 
 #> $major
 #> [1] 1
 #> 
 #> $minor
-#> [1] 4
+#> [1] 5
 #> 
 #> $patch
 #> [1] 0
@@ -140,20 +146,21 @@ per observation:
 
 ``` r
 curatedGenes(oncokb)
-#> # A tibble: 725 × 13
-#>    grch37Isoform   grch37RefSeq   grch38Isoform   grch38RefSeq   entrezGeneId hugoSymbol oncogene highest…¹ highe…² summary backg…³ tsg   highe…⁴
-#>    <chr>           <chr>          <chr>           <chr>                 <int> <chr>      <lgl>    <chr>     <chr>   <chr>   <chr>   <lgl> <chr>  
-#>  1 ENST00000318560 NM_005157.4    ENST00000318560 NM_005157.4              25 ABL1       TRUE     "1"       "R1"    ABL1, … "ABL1 … FALSE "R1"   
-#>  2 ENST00000502732 NM_007314.3    ENST00000502732 NM_007314.3              27 ABL2       TRUE     ""        ""      ABL2, … "ABL2 … FALSE ""     
-#>  3 ENST00000321945 NM_139076.2    ENST00000321945 NM_139076.2           84142 ABRAXAS1   FALSE    ""        ""      ABRAXA… "The A… TRUE  ""     
-#>  4 ENST00000331925 NM_001199954.1 ENST00000573283 NM_001199954.1           71 ACTG1      FALSE    ""        ""      ACTG1,… "ACTG1… TRUE  ""     
-#>  5 ENST00000263640 NM_001111067.2 ENST00000263640 NM_001111067.2           90 ACVR1      TRUE     ""        ""      ACVR1,… "ACVR1… FALSE ""     
-#>  6 ENST00000396623 NM_144650      ENST00000396623 NM_144650            137872 ADHFE1     TRUE     ""        ""      ADHFE1… "ADHFE… FALSE ""     
-#>  7 ENST00000265343 NM_014423      ENST00000265343 NM_014423             27125 AFF4       TRUE     ""        ""      AFF4, … "AFF4 … FALSE ""     
-#>  8 ENST00000373204 NM_012199.2    ENST00000373204 NM_012199.2           26523 AGO1       TRUE     ""        ""      AGO1, … "AGO1 … FALSE ""     
-#>  9 ENST00000220592 NM_012154.3    ENST00000220592 NM_012154.3           27161 AGO2       FALSE    ""        ""      AGO2, … "AGO2 … FALSE ""     
-#> 10 ENST00000262713 NM_032876.5    ENST00000262713 NM_032876.5           84962 AJUBA      FALSE    ""        ""      AJUBA,… "AJUBA… TRUE  ""     
-#> # … with 715 more rows, and abbreviated variable names ¹​highestSensitiveLevel, ²​highestResistanceLevel, ³​background, ⁴​highestResistancLevel
+#> # A tibble: 933 × 13
+#>    grch37Isoform  grch37RefSeq grch38Isoform grch38RefSeq entrezGeneId hugoSymbol oncogene highestSensitiveLevel highestResistanceLevel
+#>    <chr>          <chr>        <chr>         <chr>               <int> <chr>      <lgl>    <chr>                 <chr>                 
+#>  1 ENST000002657… NM_000927.4  ENST00000622… NM_00134894…         5243 ABCB1      TRUE     ""                    ""                    
+#>  2 ENST000003185… NM_005157.4  ENST00000318… NM_005157.4            25 ABL1       TRUE     "1"                   "R1"                  
+#>  3 ENST000005027… NM_007314.3  ENST00000502… NM_007314.3            27 ABL2       TRUE     ""                    ""                    
+#>  4 ENST000003219… NM_139076.2  ENST00000321… NM_139076.2         84142 ABRAXAS1   FALSE    ""                    ""                    
+#>  5 ENST000002729… NM_020311    ENST00000272… NM_020311           57007 ACKR3      TRUE     ""                    ""                    
+#>  6 ENST000003319… NM_00119995… ENST00000573… NM_00119995…           71 ACTG1      FALSE    ""                    ""                    
+#>  7 ENST000002636… NM_00111106… ENST00000263… NM_00111106…           90 ACVR1      TRUE     ""                    ""                    
+#>  8 ENST000002579… NM_004302    ENST00000257… NM_004302              91 ACVR1B     FALSE    ""                    ""                    
+#>  9 ENST000002414… NM_001278579 ENST00000241… NM_001278579           92 ACVR2A     TRUE     ""                    ""                    
+#> 10 ENST000003813… NM_018702.3  ENST00000381… NM_018702.4           105 ADARB2     TRUE     ""                    ""                    
+#> # ℹ 923 more rows
+#> # ℹ 4 more variables: summary <chr>, background <chr>, tsg <lgl>, highestResistancLevel <chr>
 ```
 
 and a long list of genes associated with cancer where there can be
@@ -162,57 +169,55 @@ multiple entries for the same `hugoSymbol` due to multiple
 
 ``` r
 cancerGeneList(oncokb)
-#> # A tibble: 3,019 × 17
-#>    hugoSymbol entrezGeneId grch37…¹ grch3…² grch3…³ grch3…⁴ oncok…⁵ occur…⁶ mSKIm…⁷ mSKHeme found…⁸ found…⁹ vogel…˟ sange…˟ geneA…˟ tsg   oncog…˟
-#>    <chr>             <int> <chr>    <chr>   <chr>   <chr>   <lgl>     <int> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <list>  <lgl> <lgl>  
-#>  1 ABL1                 25 ENST000… NM_005… ENST00… NM_005… TRUE          7 TRUE    TRUE    TRUE    TRUE    TRUE    TRUE    <chr>   FALSE TRUE   
-#>  2 ABL1                 25 ENST000… NM_005… ENST00… NM_005… TRUE          7 TRUE    TRUE    TRUE    TRUE    TRUE    TRUE    <chr>   FALSE TRUE   
-#>  3 ABL1                 25 ENST000… NM_005… ENST00… NM_005… TRUE          7 TRUE    TRUE    TRUE    TRUE    TRUE    TRUE    <chr>   FALSE TRUE   
-#>  4 AKT1                207 ENST000… NM_001… ENST00… NM_001… TRUE          7 TRUE    TRUE    TRUE    TRUE    TRUE    TRUE    <chr>   FALSE TRUE   
-#>  5 AKT1                207 ENST000… NM_001… ENST00… NM_001… TRUE          7 TRUE    TRUE    TRUE    TRUE    TRUE    TRUE    <chr>   FALSE TRUE   
-#>  6 AKT1                207 ENST000… NM_001… ENST00… NM_001… TRUE          7 TRUE    TRUE    TRUE    TRUE    TRUE    TRUE    <chr>   FALSE TRUE   
-#>  7 AKT1                207 ENST000… NM_001… ENST00… NM_001… TRUE          7 TRUE    TRUE    TRUE    TRUE    TRUE    TRUE    <chr>   FALSE TRUE   
-#>  8 AKT1                207 ENST000… NM_001… ENST00… NM_001… TRUE          7 TRUE    TRUE    TRUE    TRUE    TRUE    TRUE    <chr>   FALSE TRUE   
-#>  9 ALK                 238 ENST000… NM_004… ENST00… NM_004… TRUE          7 TRUE    TRUE    TRUE    TRUE    TRUE    TRUE    <chr>   FALSE TRUE   
-#> 10 AMER1            139285 ENST000… NM_152… ENST00… NM_152… TRUE          7 TRUE    TRUE    TRUE    TRUE    TRUE    TRUE    <chr>   TRUE  FALSE  
-#> # … with 3,009 more rows, and abbreviated variable names ¹​grch37Isoform, ²​grch37RefSeq, ³​grch38Isoform, ⁴​grch38RefSeq, ⁵​oncokbAnnotated,
-#> #   ⁶​occurrenceCount, ⁷​mSKImpact, ⁸​foundation, ⁹​foundationHeme, ˟​vogelstein, ˟​sangerCGC, ˟​geneAliases, ˟​oncogene
+#> # A tibble: 3,275 × 17
+#>    hugoSymbol entrezGeneId grch37Isoform   grch37RefSeq   grch38Isoform  grch38RefSeq oncokbAnnotated occurrenceCount mSKImpact mSKHeme
+#>    <chr>             <int> <chr>           <chr>          <chr>          <chr>        <lgl>                     <int> <lgl>     <lgl>  
+#>  1 ABL1                 25 ENST00000318560 NM_005157.4    ENST000003185… NM_005157.4  TRUE                          7 TRUE      TRUE   
+#>  2 ABL1                 25 ENST00000318560 NM_005157.4    ENST000003185… NM_005157.4  TRUE                          7 TRUE      TRUE   
+#>  3 ABL1                 25 ENST00000318560 NM_005157.4    ENST000003185… NM_005157.4  TRUE                          7 TRUE      TRUE   
+#>  4 AKT1                207 ENST00000349310 NM_001014431.1 ENST000003493… NM_00101443… TRUE                          7 TRUE      TRUE   
+#>  5 AKT1                207 ENST00000349310 NM_001014431.1 ENST000003493… NM_00101443… TRUE                          7 TRUE      TRUE   
+#>  6 AKT1                207 ENST00000349310 NM_001014431.1 ENST000003493… NM_00101443… TRUE                          7 TRUE      TRUE   
+#>  7 AKT1                207 ENST00000349310 NM_001014431.1 ENST000003493… NM_00101443… TRUE                          7 TRUE      TRUE   
+#>  8 AKT1                207 ENST00000349310 NM_001014431.1 ENST000003493… NM_00101443… TRUE                          7 TRUE      TRUE   
+#>  9 ALK                 238 ENST00000389048 NM_004304.4    ENST000003890… NM_004304.4  TRUE                          7 TRUE      TRUE   
+#> 10 AMER1            139285 ENST00000330258 NM_152424.3    ENST000003748… NM_152424.3  TRUE                          7 TRUE      TRUE   
+#> # ℹ 3,265 more rows
+#> # ℹ 7 more variables: foundation <lgl>, foundationHeme <lgl>, vogelstein <lgl>, sangerCGC <lgl>, geneAliases <list>, tsg <lgl>,
+#> #   oncogene <lgl>
 ```
 
 # Session Information
 
-``` r
-sessionInfo()
-#> R Under development (unstable) (2023-02-22 r83892)
-#> Platform: x86_64-pc-linux-gnu (64-bit)
-#> Running under: Ubuntu 22.04.1 LTS
-#> 
-#> Matrix products: default
-#> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
-#> 
-#> locale:
-#>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8   
-#>  [6] LC_MESSAGES=en_US.UTF-8    LC_PAPER=en_US.UTF-8       LC_NAME=C                  LC_ADDRESS=C               LC_TELEPHONE=C            
-#> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-#> 
-#> time zone: Etc/UTC
-#> tzcode source: system (glibc)
-#> 
-#> attached base packages:
-#> [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
-#> 
-#> other attached packages:
-#> [1] BiocStyle_2.27.1    S4Vectors_0.37.4    BiocGenerics_0.45.0 oncoKBData_0.99.1   AnVIL_1.11.3        dplyr_1.1.0         colorout_1.2-2     
-#> 
-#> loaded via a namespace (and not attached):
-#>  [1] utf8_1.2.3           generics_0.1.3       tidyr_1.3.0          futile.options_1.0.1 digest_0.6.31        magrittr_2.0.3      
-#>  [7] evaluate_0.20        fastmap_1.1.1        jsonlite_1.8.4       DBI_1.1.3            formatR_1.14         promises_1.2.0.1    
-#> [13] BiocManager_1.30.20  httr_1.4.5           purrr_1.0.1          fansi_1.0.4          rapiclient_0.1.3     codetools_0.2-19    
-#> [19] cli_3.6.0            shiny_1.7.4          rlang_1.0.6          futile.logger_1.4.3  ellipsis_0.3.2       withr_2.5.0         
-#> [25] yaml_2.3.7           tools_4.3.0          parallel_4.3.0       httpuv_1.6.9         DT_0.27              lambda.r_1.2.4      
-#> [31] curl_5.0.0           vctrs_0.5.2          R6_2.5.1             mime_0.12            lifecycle_1.0.3      htmlwidgets_1.6.1   
-#> [37] miniUI_0.1.1.1       pkgconfig_2.0.3      pillar_1.8.1         later_1.3.0          glue_1.6.2           Rcpp_1.0.10         
-#> [43] xfun_0.37            tibble_3.1.8         tidyselect_1.2.0     rstudioapi_0.14      knitr_1.42           xtable_1.8-4        
-#> [49] htmltools_0.5.4      rmarkdown_2.20       compiler_4.3.0
-```
+<details>
+<summary>
+Click to expand <code>sessionInfo()</code>
+</summary>
+<pre><code>R version 4.5.0 Patched (2025-04-15 r88148)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.2 LTS
+&#10;Matrix products: default
+BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+&#10;locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8    LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+&#10;time zone: America/New_York
+tzcode source: system (glibc)
+&#10;attached base packages:
+[1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
+&#10;other attached packages:
+[1] BiocStyle_2.37.0    S4Vectors_0.47.0    BiocGenerics_0.55.0 generics_0.1.3      oncoKBData_0.99.4   AnVIL_1.21.3       
+[7] AnVILBase_1.3.1     dplyr_1.1.4         colorout_1.3-2     
+&#10;loaded via a namespace (and not attached):
+ [1] utf8_1.2.4           rappdirs_0.3.3       futile.options_1.0.1 digest_0.6.37        magrittr_2.0.3       evaluate_1.0.3      
+ [7] fastmap_1.2.0        rprojroot_2.0.4      jsonlite_2.0.0       processx_3.8.6       pkgbuild_1.4.7       ps_1.9.1            
+[13] formatR_1.14         promises_1.3.2       BiocManager_1.30.25  httr_1.4.7           purrr_1.0.4          rapiclient_0.1.8    
+[19] codetools_0.2-20     httr2_1.1.2          cli_3.6.5            shiny_1.10.0         rlang_1.1.6          futile.logger_1.4.3 
+[25] remotes_2.5.0        yaml_2.3.10          BiocBaseUtils_1.11.0 tools_4.5.0          httpuv_1.6.16        DT_0.33             
+[31] lambda.r_1.2.4       curl_6.2.2           vctrs_0.6.5          R6_2.6.1             mime_0.13            lifecycle_1.0.4     
+[37] fs_1.6.6             htmlwidgets_1.6.4    usethis_3.1.0        miniUI_0.1.2         pkgconfig_2.0.3      desc_1.4.3          
+[43] callr_3.7.6          clipr_0.8.0          pillar_1.10.2        later_1.4.2          rsconnect_1.3.4      glue_1.8.0          
+[49] Rcpp_1.0.14          xfun_0.52            tibble_3.2.1         tidyselect_1.2.1     rstudioapi_0.17.1    knitr_1.50          
+[55] xtable_1.8-4         htmltools_0.5.8.1    rmarkdown_2.29       compiler_4.5.0      </code></pre>
+</details>
