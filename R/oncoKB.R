@@ -87,6 +87,9 @@ oncoKB <- function(
 #'
 #' @return A `DataFrame` with metadata
 #'
+#' @importFrom S4Vectors metadata<-
+#' @importClassesFrom S4Vectors DataFrame
+#'
 #' @examples
 #' oncokb <- oncoKB()
 #' levelsOfEvidence(oncokb)
@@ -99,9 +102,10 @@ levelsOfEvidence <- function(api) {
     metadata <- result[!names(result) %in% "levels"]
 
     evid <- dplyr::bind_rows(result[["levels"]]) |>
-        methods::as("DataFrame")
+        as.data.frame() |>
+        DataFrame()
 
-    S4Vectors::metadata(evid) <- metadata
+    metadata(evid) <- metadata
     evid
 }
 
