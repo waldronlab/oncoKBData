@@ -87,7 +87,7 @@ oncoKB <- function(
 #'
 #' @return A `DataFrame` with metadata
 #'
-#' @importFrom S4Vectors metadata<-
+#' @importFrom S4Vectors metadata<- DataFrame
 #' @importClassesFrom S4Vectors DataFrame
 #'
 #' @examples
